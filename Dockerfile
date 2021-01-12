@@ -18,6 +18,6 @@ FROM nginx:${NGINX_VERSION}-alpine
 ENV WEBSOCKET_HOST=localhost
 ENV WEBSOCKET_PORT=8080
 
-COPY docker/entrypoint.sh /docker-entrypoint.d/entrypoint.sh
-COPY docker/config.json.template /config.json.template
-COPY --from=builder /app/Lightspeed-react/build /usr/share/nginx/html
+COPY --chown=1000 docker/entrypoint.sh /docker-entrypoint.d/entrypoint.sh
+COPY --chown=1000 docker/config.json.template /config.json.template
+COPY --from=builder --chown=1000 /app/Lightspeed-react/build /usr/share/nginx/html
